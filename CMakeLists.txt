@@ -20,7 +20,7 @@ set(SOURCE_FILES
     main.cpp
     mainwindow.cpp
     mainwindow.h
-    mainwindow.ui)
+    mainwindow.ui Cell.cpp Cell.h Subject.h Observer.h Calculator.cpp Calculator.h)
 
 add_executable(Cells_Project ${SOURCE_FILES})
 
