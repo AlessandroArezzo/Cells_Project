@@ -268,6 +268,11 @@
     <column/>
     <column/>
     <column/>
+    <item row="0" column="0">
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
    </widget>
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">

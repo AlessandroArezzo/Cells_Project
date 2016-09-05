@@ -9,9 +9,14 @@
 class Subject {
 
 public:
+
+    Subject(){}
+    virtual ~Subject(){}
+
     virtual void attach()=0;
     virtual void detach()=0;
     virtual void notify()=0;
+
 
 
 };

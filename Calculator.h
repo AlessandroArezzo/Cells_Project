@@ -7,23 +7,50 @@
 #ifndef CELLS_PROJECT_CALCULATOR_H
 #define CELLS_PROJECT_CALCULATOR_H
 
+//#include "Cell.h"
 #include <list>
 #include "Observer.h"
-#include "Cell.h"
+
+class Cell;
 
 class Calculator :public Observer{
 
 public:
 
     Calculator();
-    virtual void subscribe(Subject* cell);
-    virtual void unsubscribe(Subject* cell);
-    virtual void update();
+    ~Calculator(){ }
+    void subscribe(Subject* cell);
+    void unsubscribe(Subject* cell);
+    void update();
 
     void calculateMax();
     void calculateMin();
     void calculateSum();
     void calculateMean();
+
+    bool searchCell(Subject* cell);
+
+
+    float getMax() const {
+        return max;
+    }
+
+    float getMin() const {
+        return min;
+    }
+
+
+    float getMean() const {
+        return mean;
+    }
+
+    float getSum() const {
+        return sum;
+    }
+
+    const std::list<Subject *> &getCells() const {
+        return cells;
+    }
 
 private:
     float max;
