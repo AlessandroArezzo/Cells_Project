@@ -13,9 +13,9 @@ class Table {
 public:
     Table(Observer* ob=nullptr, int row=0, int column=0);
 
-    /*~Table(){
-        delete[] cells;
-    }*/
+    ~Table(){
+        delete cells;
+    }
 
 
     Cell * getCell(int row,int column) const {

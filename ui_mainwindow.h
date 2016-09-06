@@ -60,13 +60,29 @@ public:
             tableWidget->setColumnCount(100);
         if (tableWidget->rowCount() < 100)
             tableWidget->setRowCount(100);
+        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        __qtablewidgetitem->setTextAlignment(Qt::AlignCenter);
+        tableWidget->setItem(0, 0, __qtablewidgetitem);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
         tableWidget->setGeometry(QRect(180, 0, 631, 481));
+        QSizePolicy sizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
+        tableWidget->setSizePolicy(sizePolicy);
+        QFont font;
+        font.setPointSize(9);
+        tableWidget->setFont(font);
         tableWidget->setRowCount(100);
         tableWidget->setColumnCount(100);
         textEdit = new QTextEdit(centralWidget);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         textEdit->setGeometry(QRect(10, 50, 151, 431));
+        QFont font1;
+        font1.setPointSize(12);
+        textEdit->setFont(font1);
+        textEdit->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
+        textEdit->setReadOnly(true);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -90,6 +106,11 @@ public:
         label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:16pt;\">RISULTATI</span></p></body></html>", 0));
         removeButton->setText(QApplication::translate("MainWindow", "REMOVE CELL", 0));
         addButton->setText(QApplication::translate("MainWindow", "ADD CELL", 0));
+
+        const bool __sortingEnabled = tableWidget->isSortingEnabled();
+        tableWidget->setSortingEnabled(false);
+        tableWidget->setSortingEnabled(__sortingEnabled);
+
     } // retranslateUi
 
 };

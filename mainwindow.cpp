@@ -5,6 +5,7 @@ MainWindow::MainWindow(Observer* ob,QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    //connect( this->ui->addButton, SIGNAL( clicked() ), this, SLOT(addButton_clicked(QString)) );
     table=new Table(ob,ui->tableWidget->rowCount(),ui->tableWidget->columnCount());
     updateTextEdit();
 }
@@ -54,4 +55,5 @@ void MainWindow::updateTextEdit(){
         +"SUM:"+QString::number(dynamic_cast<Calculator*>(observer)->getSum())+"\n"
         +"MEAN:"+QString::number(dynamic_cast<Calculator*>(observer)->getMean()));
 }
+
 
