@@ -6,7 +6,7 @@ MainWindow::MainWindow(Observer* ob,QWidget *parent) :
 {
     ui->setupUi(this);
     //connect( this->ui->addButton, SIGNAL( clicked() ), this, SLOT(addButton_clicked(QString)) );
-    table=new Table(ob,ui->tableWidget->rowCount(),ui->tableWidget->columnCount());
+    table=new Table(ui->tableWidget->rowCount(),ui->tableWidget->columnCount(),ob);
     updateTextEdit();
 }
 
@@ -16,7 +16,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
+void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentColumn)
 {
     if(table->getCell(currentRow,currentColumn)->isRegistred()) {
         ui->addButton->setDisabled(true);
@@ -33,8 +33,14 @@ void MainWindow::on_tableWidget_cellChanged(int row, int column)
 {
     if(ui->tableWidget->currentItem()->text()==NULL)
         ui->tableWidget->currentItem()->setText("0");
-    table->setCellValue(ui->tableWidget->currentItem()->text().toFloat(), row, column);
-    updateTextEdit();
+    bool verify;
+    float value=ui->tableWidget->currentItem()->text().toFloat(&verify);
+    if(verify){
+        table->setCellValue(value, row, column);
+        updateTextEdit();
+    }
+    else
+        ui->tableWidget->currentItem()->setText(QString::number(table->getCell(ui->tableWidget->currentRow(),ui->tableWidget->currentColumn())->getValue()));
 }
 
 void MainWindow::on_addButton_clicked()

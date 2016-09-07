@@ -2,9 +2,8 @@
 // Created by Alessandro on 01/09/2016.
 //
 
-#include "Cell.h"
-
 #include "Calculator.h"
+#include <typeinfo>
 
 Calculator::Calculator():Observer(),max(0),min(0),sum(0),mean(0) {
 }
@@ -20,20 +19,26 @@ void Calculator::unsubscribe(Subject *cell) {
     update();
 }
 
-void Calculator::update() {
-    calculateMax();
-    calculateMin();
-    calculateSum();
-    calculateMean();
+bool Calculator::update() {
+    try {
+        calculateMax();
+        calculateMin();
+        calculateSum();
+        calculateMean();
+        return true;
+    }
+    catch(std::bad_cast& ex){
+        return false;
+    }
 }
 
 void Calculator::calculateMax() {
     max=0;
     if(cells.size()>0){
-        max= dynamic_cast<Cell*>(*(cells.begin()))->getValue();
-        for(auto itr=cells.begin();itr!=cells.end();itr++){
-            if(dynamic_cast<Cell*>((*itr))->getValue()>max)
-                max=dynamic_cast<Cell*>((*itr))->getValue();
+        max = dynamic_cast<Cell *>(*(cells.begin()))->getValue();
+        for (auto itr = cells.begin(); itr != cells.end(); itr++) {
+            if (dynamic_cast<Cell *>((*itr))->getValue() > max)
+                max = dynamic_cast<Cell *>((*itr))->getValue();
         }
     }
 }
@@ -66,10 +71,3 @@ void Calculator::calculateMean() {
     }
 }
 
-bool Calculator::searchCell(Subject* cell) {
-    for(auto itr=cells.begin();itr!=cells.end();itr++){
-        if(dynamic_cast<Cell*>(*itr)== dynamic_cast<Cell*>(cell))
-            return true;
-    }
-    return false;
-}

@@ -14,7 +14,7 @@
 class Cell :public Subject{
 
 public:
-    Cell(Calculator* ob= nullptr):Subject(),value(0),observer(ob),registred(false){}
+    Cell(Observer* ob= nullptr):Subject(),value(0),observer(ob),registred(false){}
 
     ~Cell(){
         if(registred)
@@ -25,15 +25,6 @@ public:
     void detach() override ;
     void notify() override ;
 
-
-
-    Observer *getObserver() const {
-        return observer;
-    }
-
-    void setObserver(Calculator *observer) {
-        Cell::observer = observer;
-    }
 
     float getValue() const {
         return value;
@@ -49,13 +40,10 @@ public:
         return registred;
     }
 
-    void setRegistred(bool registred) {
-        Cell::registred = registred;
-    }
 
 private:
-    Calculator* observer;
     float value;
+    Observer* observer;
     bool registred;
 
 };

@@ -7,23 +7,26 @@
 
 #include "Cell.h"
 #include "Observer.h"
+#include <stdexcept>
 
 class Table {
 
 public:
-    Table(Observer* ob=nullptr, int row=0, int column=0);
+    Table(int row, int column,Observer* ob=nullptr);
 
     ~Table(){
         delete cells;
     }
 
-
     Cell * getCell(int row,int column) const {
-        return &(cells[row*numColumn+column]);
+        if(row<numRow && row>=0 && column<numColumn && column>=0)
+            return &(cells[row*numColumn+column]);
+        return nullptr;
     }
 
     void setCellValue(float value, int row,int column){
-        cells[row*numColumn+column].setValue(value);
+        if (row < numRow && row >= 0 && column < numColumn && column >= 0)
+            cells[row * numColumn + column].setValue(value);
     }
 
 private:

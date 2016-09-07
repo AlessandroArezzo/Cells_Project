@@ -73,6 +73,9 @@
       <pointsize>10</pointsize>
      </font>
     </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::SingleSelection</enum>
+    </property>
     <property name="rowCount">
      <number>100</number>
     </property>

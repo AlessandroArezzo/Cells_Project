@@ -71,8 +71,9 @@ public:
         sizePolicy.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
         tableWidget->setSizePolicy(sizePolicy);
         QFont font;
-        font.setPointSize(9);
+        font.setPointSize(10);
         tableWidget->setFont(font);
+        tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
         tableWidget->setRowCount(100);
         tableWidget->setColumnCount(100);
         textEdit = new QTextEdit(centralWidget);

@@ -5,8 +5,8 @@
 #include "Table.h"
 
 
-Table::Table(Observer* ob,int row,int column):numRow(row),numColumn(column) {
+Table::Table(int row,int column,Observer* ob):numRow(row),numColumn(column) {
     cells=new Cell[row*column];
     for(int i=0;i<row*column;i++)
-        cells[i]=Cell(dynamic_cast<Calculator*>(ob));
+        cells[i]=Cell(ob);
 }
