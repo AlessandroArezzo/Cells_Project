@@ -40,7 +40,6 @@ public:
         return registred;
     }
 
-
 private:
     float value;
     Observer* observer;
