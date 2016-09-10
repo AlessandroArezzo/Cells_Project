@@ -29,6 +29,23 @@ public:
             cells[row * numColumn + column].setValue(value);
     }
 
+
+    int getNumRow() const {
+        return numRow;
+    }
+
+    void setNumRow(int numRow) {
+        Table::numRow = numRow;
+    }
+
+    int getNumColumn() const {
+        return numColumn;
+    }
+
+    void setNumColumn(int numColumn) {
+        Table::numColumn = numColumn;
+    }
+
 private:
     Cell* cells;
     int numRow;

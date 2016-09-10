@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.3)
 project(Cells_Project)
 
+add_subdirectory(test)
 
 find_package( Qt5Core REQUIRED )
 find_package( Qt5Widgets REQUIRED )
@@ -21,3 +22,8 @@ set(SOURCE_FILES
 add_executable(Cells_Project ${SOURCE_FILES})
 
 qt5_use_modules( Cells_Project Core Widgets Gui )
+
+#add_library(core ${SOURCE_FILES})
+#target_link_libraries(Cells_Project core)
+
+

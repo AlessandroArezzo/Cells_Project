@@ -40,6 +40,15 @@ public:
         return registred;
     }
 
+
+    Observer *getObserver() const {
+        return observer;
+    }
+
+    void setObserver(Observer *observer) {
+        Cell::observer = observer;
+    }
+
 private:
     float value;
     Observer* observer;

@@ -5,7 +5,7 @@
 #include "Cell.h"
 
 void Cell::attach() {
-    if(!registred) {
+    if(!registred && observer!= nullptr) {
         observer->subscribe(this);
         registred=true;
     }
@@ -13,7 +13,7 @@ void Cell::attach() {
 
 
 void Cell::detach() {
-    if(registred) {
+    if(registred && observer!= nullptr) {
         observer->unsubscribe(this);
         registred=false;
     }
@@ -21,5 +21,6 @@ void Cell::detach() {
 
 
 void Cell::notify() {
-    observer->update();
+    if(observer!= nullptr)
+        observer->update();
 }
