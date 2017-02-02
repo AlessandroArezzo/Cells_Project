@@ -11,6 +11,11 @@
 #include "Observer.h"
 #include "Cell.h"
 #include <exception>
+#include "Formula.h"
+#include "FormulaMax.h"
+#include "FormulaMin.h"
+#include "FormulaSum.h"
+#include "FormulaMean.h"
 
 class Calculator :public Observer{
 
@@ -52,6 +57,11 @@ private:
     float mean;
 
     std::list<Subject*> cells;
+
+    Formula* formulaMax;
+    Formula* formulaMin;
+    Formula* formulaSum;
+    Formula* formulaMean;
 
 };
 
