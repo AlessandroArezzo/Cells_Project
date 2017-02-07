@@ -15,7 +15,7 @@ public:
 
     ~FormulaMin() {}
 
-    float calculate() override ;
+    float calculate() ;
 };
 
 

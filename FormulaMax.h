@@ -14,7 +14,7 @@ public:
 
     ~FormulaMax() {}
 
-    float calculate() override ;
+    float calculate() ;
 };
 
 

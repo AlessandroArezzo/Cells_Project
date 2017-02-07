@@ -15,7 +15,7 @@ public:
 
     ~FormulaMean() {}
 
-    float calculate() override ;
+    float calculate() ;
 };
 
 #endif //CELLS_PROJECT_FORMULAMEAN_H

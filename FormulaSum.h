@@ -14,7 +14,7 @@ public:
 
     ~FormulaSum() {}
 
-    float calculate() override ;
+    float calculate() ;
 };
 
 #endif //CELLS_PROJECT_FORMULASUM_H

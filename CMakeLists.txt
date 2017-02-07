@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.3)
 project(Cells_Project)
 
+add_subdirectory(test)
+
 set (CMAKE_PREFIX_PATH "/Users/alessandroarezzo/Qt5.8.0/5.8/clang_64/lib/cmake")
 
 find_package( Qt5Core REQUIRED )
@@ -21,9 +23,7 @@ set(SOURCE_FILES
 
 add_executable(Cells_Project ${SOURCE_FILES})
 
-qt5_use_modules( Cells_Project Core Widgets Gui )
+qt5_use_modules( Cells_Project Core Widgets Gui)
 
-#add_library(core ${SOURCE_FILES})
-#target_link_libraries(Cells_Project core)
-
+add_library(core ${SOURCE_FILES})
 
