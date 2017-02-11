@@ -23,7 +23,12 @@ set(SOURCE_FILES
 
 add_executable(Cells_Project ${SOURCE_FILES})
 
-qt5_use_modules( Cells_Project Core Widgets Gui)
+#qt5_use_modules( Cells_Project Core Widgets Gui)
 
-add_library(core ${SOURCE_FILES})
+include_directories(${Qt5Widgets_INCLUDE_DIRS})
+include_directories(${Qt5Core_INCLUDE_DIRS})
+include_directories(${Qt5Gui_INCLUDE_DIRS})
 
+add_library(core ${SOURCE_FILES} )
+
+target_link_libraries(Cells_Project core ${Qt5Widgets_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES} )
