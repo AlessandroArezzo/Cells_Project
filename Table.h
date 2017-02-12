@@ -15,7 +15,7 @@ public:
     Table(int row, int column,Observer* ob=nullptr);
 
     ~Table(){
-        delete cells;
+        delete[] cells;
     }
 
     Cell * getCell(int row,int column) const {

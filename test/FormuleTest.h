@@ -6,12 +6,12 @@
 #define CELLS_PROJECT_FORMULAMAXTESTS_H
 
 
-#include <QtTest>
+//#include <QtTest>
 #include "gtest/gtest.h"
 #include "../Table.h"
 
 
-class FormulaMaxTests: public testing::Test{
+class FormuleTest: public testing::Test{
 
 
 protected:
@@ -24,24 +24,34 @@ protected:
         c->subscribe(table->getCell(0,1));
     }
 
-
     Calculator* c;
     Table* table;
 
 };
 
-TEST_F(FormulaMaxTests, FormulaMax){
+TEST_F(FormuleTest, FormulaMax){
 
     c->calculateMax();
     ASSERT_EQ(c->getMax(),20);
 }
 
+TEST_F(FormuleTest,FormulaMin){
+    c->calculateMin();
+    ASSERT_EQ(c->getMin(),10);
+}
+
+TEST_F(FormuleTest,FormulaMean){
+    c->calculateMean();
+    ASSERT_EQ(c->getMean(),15);
+}
+
+TEST_F(FormuleTest,FormulaSum){
+    c->calculateSum();
+    ASSERT_EQ(c->getSum(),30);
+}
 
 
-
-
-
-/*class FormulaMaxTests: public QObject{
+/*class FormuleTest: public QObject{
 
 private slots:
 

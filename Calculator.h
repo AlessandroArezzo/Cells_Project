@@ -32,6 +32,14 @@ public:
     void calculateSum();
     void calculateMean();
 
+    Subject* getCell(int pos){
+        auto itr=cells.begin();
+        if(pos<=cells.size()) {
+            for (int i = 0; i < pos;i++)
+                itr++;
+        }
+        return *itr;
+    }
 
     float getMax() const {
         return max;
@@ -40,7 +48,6 @@ public:
     float getMin() const {
         return min;
     }
-
 
     float getMean() const {
         return mean;
