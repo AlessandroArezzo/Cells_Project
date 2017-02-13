@@ -25,9 +25,21 @@ private slots:
 
     void on_tableWidget_cellChanged(int row, int column);
 
-    void on_addButton_clicked();
+    void on_addSumButton_clicked();
 
-    void on_removeButton_clicked();
+    void on_removeSumButton_clicked();
+
+    void on_addMaxButton_clicked();
+
+    void on_removeMaxButton_clicked();
+
+    void on_addMinButton_clicked();
+
+    void on_removeMinButton_clicked();
+
+    void on_addMeanButton_clicked();
+
+    void on_removeMeanButton_clicked();
 
 private:
     Observer* observer;

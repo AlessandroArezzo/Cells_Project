@@ -5,9 +5,9 @@
 #include "gtest/gtest.h"
 
 //#include <QtTest/QtTest>
-#include "FormuleTest.h"
 #include "CalculatorTest.h"
 #include "CellTest.h"
+#include "FormuleTest.h"
 
 //QTEST_MAIN(FormuleTest)
 

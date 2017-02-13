@@ -21,9 +21,14 @@ protected:
         firstCell=new Cell;
         secondCell=new Cell;
         thirdCell=new Cell;
-        c->subscribe(firstCell);
-        c->subscribe(secondCell);
-        c->subscribe(thirdCell);
+        c->subscribe(firstCell,"Sum");
+        c->subscribe(firstCell,"Mean"); //firstCell iscritta alle formule Sum e Mean
+        c->subscribe(secondCell,"Sum");
+        c->subscribe(secondCell,"Min"); //secondCell iscritta alle formule Sum e Min
+        c->subscribe(thirdCell,"Sum");
+        c->subscribe(thirdCell,"Max");
+        c->subscribe(thirdCell,"Min"); //thirdCell iscritta alle formule Sum e Max e Min
+
     }
 
     Calculator* c;
@@ -34,15 +39,44 @@ protected:
 
 
 TEST_F(CalculatorTest, testSubscribe){
-    ASSERT_EQ(firstCell, dynamic_cast<Cell*>(c->getCell(0)));
-    ASSERT_EQ(secondCell, dynamic_cast<Cell*>(c->getCell(1)));
-    ASSERT_EQ(thirdCell, dynamic_cast<Cell*>(c->getCell(2)));
+    ASSERT_TRUE(c->searchSum(firstCell));
+    ASSERT_TRUE(c->searchMean(firstCell));
+    ASSERT_FALSE(c->searchMax(firstCell));
+    ASSERT_FALSE(c->searchMin(firstCell));
+    
+    ASSERT_TRUE(c->searchSum(secondCell));
+    ASSERT_TRUE(c->searchMin(secondCell));
+    ASSERT_FALSE(c->searchMax(secondCell));
+    ASSERT_FALSE(c->searchMean(secondCell));
+    
+    ASSERT_TRUE(c->searchSum(thirdCell));
+    ASSERT_TRUE(c->searchMax(thirdCell));
+    ASSERT_TRUE(c->searchMin(thirdCell));
+    ASSERT_FALSE(c->searchMean(thirdCell));
+
+
 }
 
 TEST_F(CalculatorTest, testUnsubscribe){
-    c->unsubscribe(secondCell);
-    ASSERT_EQ(firstCell, dynamic_cast<Cell*>(c->getCell(0)));
-    ASSERT_EQ(thirdCell, dynamic_cast<Cell*>(c->getCell(1)));
+    c->unsubscribe(firstCell,"Sum");
+    c->unsubscribe(secondCell,"Min");
+    c->unsubscribe(thirdCell,"Max");
+
+    ASSERT_FALSE(c->searchSum(firstCell));
+    ASSERT_TRUE(c->searchMean(firstCell));
+    ASSERT_FALSE(c->searchMax(firstCell));
+    ASSERT_FALSE(c->searchMin(firstCell));
+
+    ASSERT_TRUE(c->searchSum(secondCell));
+    ASSERT_FALSE(c->searchMin(secondCell));
+    ASSERT_FALSE(c->searchMax(secondCell));
+    ASSERT_FALSE(c->searchMean(secondCell));
+
+    ASSERT_TRUE(c->searchSum(thirdCell));
+    ASSERT_FALSE(c->searchMax(thirdCell));
+    ASSERT_TRUE(c->searchMin(thirdCell));
+    ASSERT_FALSE(c->searchMean(thirdCell));
+
 }
 
 #endif //CELLS_PROJECT_CALCULATORTEST_H

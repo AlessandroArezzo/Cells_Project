@@ -5,6 +5,7 @@
 #ifndef CELLS_PROJECT_SUBJECT_H
 #define CELLS_PROJECT_SUBJECT_H
 
+#include <string>
 
 class Subject {
 
@@ -13,8 +14,8 @@ public:
     Subject(){}
     virtual ~Subject(){}
 
-    virtual void attach()=0;
-    virtual void detach()=0;
+    virtual void attach(std::string formula)=0;
+    virtual void detach(std::string formula)=0;
     virtual void notify()=0;
 
 

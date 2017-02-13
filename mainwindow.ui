@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1040</width>
+    <width>1165</width>
     <height>571</height>
    </rect>
   </property>
@@ -27,26 +27,26 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;RISULTATI&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="removeButton">
+   <widget class="QPushButton" name="removeSumButton">
     <property name="geometry">
      <rect>
       <x>820</x>
-      <y>290</y>
+      <y>90</y>
       <width>181</width>
-      <height>61</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
      <string>REMOVE CELL</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="addButton">
+   <widget class="QPushButton" name="addSumButton">
     <property name="geometry">
      <rect>
       <x>820</x>
-      <y>140</y>
+      <y>40</y>
       <width>181</width>
-      <height>61</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
@@ -309,14 +309,171 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QPushButton" name="removeMaxButton">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>250</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>REMOVE CELL</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addMaxButton">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>200</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ADD CELL</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addMinButton">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>360</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ADD CELL</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="removeMinButton">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>410</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>REMOVE CELL</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>829</x>
+      <y>20</y>
+      <width>161</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SUM</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>180</y>
+      <width>161</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>MEAN</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>180</y>
+      <width>161</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>MAX</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>330</y>
+      <width>161</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>MIN</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="removeMeanButton">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>250</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>REMOVE CELL</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addMeanButton">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>200</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ADD CELL</string>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>removeSumButton</zorder>
+   <zorder>addSumButton</zorder>
+   <zorder>tableWidget</zorder>
+   <zorder>textEdit</zorder>
+   <zorder>removeMaxButton</zorder>
+   <zorder>addMaxButton</zorder>
+   <zorder>addMinButton</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_4</zorder>
+   <zorder>label_5</zorder>
+   <zorder>removeMeanButton</zorder>
+   <zorder>addMeanButton</zorder>
+   <zorder>removeMinButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1040</width>
-     <height>21</height>
+     <width>1165</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>

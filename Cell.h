@@ -10,19 +10,24 @@
 #include "ui_mainwindow.h"
 
 
-
 class Cell :public Subject{
 
 public:
     Cell(Observer* ob= nullptr):Subject(),value(0),observer(ob),registred(false){}
 
     ~Cell(){
-        if(registred)
-            detach();
+        if(dynamic_cast<Calculator*>(observer)->searchMax(this))
+            detach("Max");
+        if(dynamic_cast<Calculator*>(observer)->searchMin(this))
+            detach("Min");
+        if(dynamic_cast<Calculator*>(observer)->searchMean(this))
+            detach("Mean");
+        if(dynamic_cast<Calculator*>(observer)->searchSum(this))
+            detach("Sum");
     }
 
-    void attach() override ;
-    void detach() override ;
+    void attach(std::string formula) override ;
+    void detach(std::string formula) override ;
     void notify() override ;
 
 

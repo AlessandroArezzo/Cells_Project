@@ -16,12 +16,21 @@ class FormuleTest: public testing::Test{
 
 protected:
     virtual void SetUp(){
-        table=new Table(10,10);
+        table=new Table(10,10,c);
         table->setCellValue(10,0,0);
         table->setCellValue(20,0,1);
+        table->setCellValue(30,0,2);
         c=new Calculator();
-        c->subscribe(table->getCell(0,0));
-        c->subscribe(table->getCell(0,1));
+        c->subscribe(table->getCell(0,0),"Sum");
+        c->subscribe(table->getCell(0,0),"Min");
+        c->subscribe(table->getCell(0,1),"Mean");
+        c->subscribe(table->getCell(0,1),"Min");
+        c->subscribe(table->getCell(0,1),"Max");
+        c->subscribe(table->getCell(0,2),"Sum");
+        c->subscribe(table->getCell(0,2),"Min");
+        c->subscribe(table->getCell(0,2),"Mean");
+
+
     }
 
     Calculator* c;
@@ -42,12 +51,12 @@ TEST_F(FormuleTest,FormulaMin){
 
 TEST_F(FormuleTest,FormulaMean){
     c->calculateMean();
-    ASSERT_EQ(c->getMean(),15);
+    ASSERT_EQ(c->getMean(),25);
 }
 
 TEST_F(FormuleTest,FormulaSum){
     c->calculateSum();
-    ASSERT_EQ(c->getSum(),30);
+    ASSERT_EQ(c->getSum(),40);
 }
 
 

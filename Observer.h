@@ -14,10 +14,10 @@ public:
     Observer(){}
 
     virtual ~Observer(){}
-    virtual void subscribe(Subject* cell)=0;
-    virtual void unsubscribe(Subject* cell)=0;
+    virtual bool subscribe(Subject* cell,std::string formula)=0;
+    virtual bool unsubscribe(Subject* cell,std::string formula)=0;
     virtual bool update()=0;
-    
+
 
 };
 

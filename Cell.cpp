@@ -4,18 +4,23 @@
 
 #include "Cell.h"
 
-void Cell::attach() {
-    if(!registred && observer!= nullptr) {
-        observer->subscribe(this);
-        registred=true;
+void Cell::attach(std::string formula) {
+    if(formula=="Sum" || formula=="Mean" || formula=="Max" || formula=="Min") {
+        if (observer != nullptr) {
+            observer->subscribe(this, formula);
+            registred = true;
+        }
     }
 }
 
 
-void Cell::detach() {
-    if(registred && observer!= nullptr) {
-        observer->unsubscribe(this);
-        registred=false;
+void Cell::detach(std::string formula) {
+    if(formula=="Sum" || formula=="Mean" || formula=="Max" || formula=="Min") {
+        if (observer != nullptr) {
+            observer->unsubscribe(this, formula);
+            if(!dynamic_cast<Calculator*>(observer)->searchSum(this) && !dynamic_cast<Calculator*>(observer)->searchMax(this) && !dynamic_cast<Calculator*>(observer)->searchMin(this) && !dynamic_cast<Calculator*>(observer)->searchMean(this))
+            registred = false;
+        }
     }
 }
 

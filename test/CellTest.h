@@ -32,11 +32,14 @@ TEST_F(CellTest,CellConstructor ){
 
 TEST_F(CellTest,Attach){
     Cell* cell=new Cell(calculator);
-    cell->attach();
-    ASSERT_EQ(cell,calculator->getCell(0));
+    cell->attach("Sum");
+    ASSERT_TRUE(calculator->searchSum(cell));
+    ASSERT_FALSE(calculator->searchMean(cell));
+    ASSERT_FALSE(calculator->searchMax(cell));
+    ASSERT_FALSE(calculator->searchMin(cell));
     ASSERT_TRUE(cell->isRegistred());
 }
-
+/*
 TEST_F(CellTest,Notify){
 
     Cell* cell=new Cell(calculator);
@@ -45,6 +48,6 @@ TEST_F(CellTest,Notify){
     cell->setValue(10); //Il metodo set invoca Notify quindi si testa funzionamento del metodo Notify chiamando setValue
     ASSERT_EQ(10, dynamic_cast<Cell*>(calculator->getCell(0))->getValue());
 }
-
+*/
 
 #endif //CELLS_PROJECT_CELLTEST_H

@@ -6,21 +6,45 @@
 //#include <typeinfo>
 
 Calculator::Calculator():Observer(),max(0),min(0),sum(0),mean(0) {
-    formulaMax=new FormulaMax(&cells);
-    formulaMin=new FormulaMin(&cells);
-    formulaSum=new FormulaSum(&cells);
-    formulaMean=new FormulaMean(&cells);
+    formulaMax=new FormulaMax(&cellsMax);
+    formulaMin=new FormulaMin(&cellsMin);
+    formulaSum=new FormulaSum(&cellsSum);
+    formulaMean=new FormulaMean(&cellsMean);
 }
 
 
-void Calculator::subscribe(Subject *cell) {
-    cells.push_back(cell);
+bool Calculator::subscribe(Subject *cell,std::string formula) {
+    std::list<Subject*>* cells;
+    if(formula=="Sum")
+        cells=&cellsSum;
+    else if(formula=="Min")
+        cells=&cellsMin;
+    else if(formula=="Max")
+        cells=&cellsMax;
+    else if(formula=="Mean")
+        cells=&cellsMean;
+    else
+        return false;
+    (*cells).push_back(cell);
     update();
+    return true;
 }
 
-void Calculator::unsubscribe(Subject *cell) {
-    cells.remove(cell);
+bool Calculator::unsubscribe(Subject *cell,std::string formula) {
+    std::list<Subject*>* cells;
+    if(formula=="Sum")
+        cells=&cellsSum;
+    else if(formula=="Min")
+        cells=&cellsMin;
+    else if(formula=="Max")
+        cells=&cellsMax;
+    else if(formula=="Mean")
+        cells=&cellsMean;
+    else
+        return false;
+    (*cells).remove(cell);
     update();
+    return true;
 }
 
 bool Calculator::update() {
