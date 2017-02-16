@@ -1,7 +1,5 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include "Cell.h"
-#include "Observer.h"
 
 
 int main(int argc, char *argv[])

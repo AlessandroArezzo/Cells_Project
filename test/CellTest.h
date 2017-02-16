@@ -51,5 +51,10 @@ TEST_F(CellTest,Notify){
     ASSERT_EQ(10, dynamic_cast<FormulaSum*>(formulaSum)->getSum());
 }
 
+TEST_F(CellTest, DuplicateFormule){
+    cell->attach(formulaSum);
+    cell->attach(formulaSum);
+    ASSERT_EQ(1,cell->getFormule().size());
+}
 
 #endif //CELLS_PROJECT_CELLTEST_H

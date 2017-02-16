@@ -8,8 +8,6 @@
 #include "CellTest.h"
 
 
-//QTEST_MAIN(FormuleTest)
-
 
 int main(int argc, char** argv) {
 
