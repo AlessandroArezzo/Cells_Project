@@ -11,11 +11,18 @@
 class FormulaMean: public Formula {
 public:
 
-    FormulaMean(std::list<Subject*>* cells) : Formula(cells) {}
+    FormulaMean() : Formula(),mean(0) {}
 
     ~FormulaMean() {}
 
-    float calculate() ;
+    void calculate() override ;
+
+    float getMean() const {
+        return mean;
+    }
+
+private:
+    float mean;
 };
 
 #endif //CELLS_PROJECT_FORMULAMEAN_H

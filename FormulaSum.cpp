@@ -5,12 +5,11 @@
 #include "FormulaSum.h"
 #include "Cell.h"
 
-float FormulaSum::calculate() {
-    float sum=0;
-    if(cells->size()>0){
-        for(auto itr=cells->begin();itr!=cells->end();itr++){
+void FormulaSum::calculate() {
+    sum=0;
+    if(cells.size()>0){
+        for(auto itr=cells.begin();itr!=cells.end();itr++){
             sum+=dynamic_cast<Cell*>((*itr))->getValue();
         }
     }
-    return sum;
 }

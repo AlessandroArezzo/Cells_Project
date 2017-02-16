@@ -5,14 +5,13 @@
 #include "FormulaMax.h"
 #include "Cell.h"
 
-float FormulaMax::calculate() {
-    float max=0;
-    if(cells->size()>0){
-        max = dynamic_cast<Cell *>(*(cells->begin()))->getValue();
-        for (auto itr = cells->begin(); itr != cells->end(); itr++) {
+void FormulaMax::calculate() {
+    max=0;
+    if(cells.size()>0){
+        max = dynamic_cast<Cell *>(*(cells.begin()))->getValue();
+        for (auto itr = cells.begin(); itr != cells.end(); itr++) {
             if (dynamic_cast<Cell *>((*itr))->getValue() > max)
                 max = dynamic_cast<Cell *>((*itr))->getValue();
         }
     }
-    return max;
 }

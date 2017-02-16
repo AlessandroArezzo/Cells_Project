@@ -6,28 +6,23 @@
 #define CELLS_PROJECT_CELL_H
 
 #include "Subject.h"
-#include "Calculator.h"
 #include "ui_mainwindow.h"
 
 
 class Cell :public Subject{
 
 public:
-    Cell(Observer* ob= nullptr):Subject(),value(0),observer(ob),registred(false){}
+    Cell():Subject(),value(0) {}
 
     ~Cell(){
-        if(dynamic_cast<Calculator*>(observer)->searchMax(this))
-            detach("Max");
-        if(dynamic_cast<Calculator*>(observer)->searchMin(this))
-            detach("Min");
-        if(dynamic_cast<Calculator*>(observer)->searchMean(this))
-            detach("Mean");
-        if(dynamic_cast<Calculator*>(observer)->searchSum(this))
-            detach("Sum");
+        for (auto itr = formule.begin(); itr != formule.end(); itr++)
+            (*itr)->unsubscribe(this);
+        for (auto itr = formule.begin(); itr != formule.end(); itr++)
+            formule.remove((*itr));
     }
 
-    void attach(std::string formula) override ;
-    void detach(std::string formula) override ;
+    void attach(Observer* formula) override ;
+    void detach(Observer* formula) override ;
     void notify() override ;
 
 
@@ -37,27 +32,13 @@ public:
 
     void setValue(float value) {
         Cell::value = value;
-        if(registred)
-            notify();
+        notify();
     }
 
-    bool isRegistred() const {
-        return registred;
-    }
-
-
-    Observer *getObserver() const {
-        return observer;
-    }
-
-    void setObserver(Observer *observer) {
-        Cell::observer = observer;
-    }
 
 private:
     float value;
-    Observer* observer;
-    bool registred;
+    std::list<Observer*> formule;
 
 };
 

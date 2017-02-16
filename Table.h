@@ -12,7 +12,7 @@
 class Table {
 
 public:
-    Table(int row, int column,Observer* ob=nullptr);
+    Table(int row, int column);
 
     ~Table(){
         delete[] cells;

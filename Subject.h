@@ -6,6 +6,8 @@
 #define CELLS_PROJECT_SUBJECT_H
 
 #include <string>
+#include <list>
+#include "Observer.h"
 
 class Subject {
 
@@ -14,10 +16,9 @@ public:
     Subject(){}
     virtual ~Subject(){}
 
-    virtual void attach(std::string formula)=0;
-    virtual void detach(std::string formula)=0;
+    virtual void attach(Observer * formula)=0;
+    virtual void detach(Observer * formula)=0;
     virtual void notify()=0;
-
 
 
 };

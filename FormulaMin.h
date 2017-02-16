@@ -11,11 +11,18 @@
 class FormulaMin: public Formula {
 public:
 
-    FormulaMin(std::list<Subject*>* cells) : Formula(cells) {}
+    FormulaMin() : Formula(),min(0) {}
 
     ~FormulaMin() {}
 
-    float calculate() ;
+    void calculate() override ;
+
+    float getMin() const {
+        return min;
+    }
+
+private:
+    float min;
 };
 
 

@@ -1,13 +1,16 @@
 #include "mainwindow.h"
 #include <string>
 
-MainWindow::MainWindow(Observer* ob,QWidget *parent) :
-    QMainWindow(parent),observer(ob),
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //connect( this->ui->addButton, SIGNAL( clicked() ), this, SLOT(addButton_clicked(QString)) );
-    table=new Table(ui->tableWidget->rowCount(),ui->tableWidget->columnCount(),observer);
+    table=new Table(ui->tableWidget->rowCount(),ui->tableWidget->columnCount());
+    formulaMax=new FormulaMax();
+    formulaMin=new FormulaMin();
+    formulaSum=new FormulaSum();
+    formulaMean=new FormulaMean();
     updateTextEdit();
 }
 
@@ -19,7 +22,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentColumn)
 {
-    if(dynamic_cast<Calculator*>(observer)->searchSum(table->getCell(currentRow,currentColumn))) {
+    if(formulaSum->searchCell(table->getCell(currentRow,currentColumn))) {
         ui->addSumButton->setDisabled(true);
         ui->removeSumButton->setEnabled(true);
     }
@@ -27,7 +30,7 @@ void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentCo
         ui->addSumButton->setEnabled(true);
         ui->removeSumButton->setDisabled(true);
     }
-    if(dynamic_cast<Calculator*>(observer)->searchMax(table->getCell(currentRow,currentColumn))) {
+    if(formulaMax->searchCell(table->getCell(currentRow,currentColumn))) {
         ui->addMaxButton->setDisabled(true);
         ui->removeMaxButton->setEnabled(true);
     }
@@ -35,7 +38,7 @@ void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentCo
         ui->addMaxButton->setEnabled(true);
         ui->removeMaxButton->setDisabled(true);
     }
-    if(dynamic_cast<Calculator*>(observer)->searchMin(table->getCell(currentRow,currentColumn))) {
+    if(formulaMin->searchCell(table->getCell(currentRow,currentColumn))) {
         ui->addMinButton->setDisabled(true);
         ui->removeMinButton->setEnabled(true);
     }
@@ -43,7 +46,7 @@ void MainWindow::on_tableWidget_currentCellChanged(int currentRow, int currentCo
         ui->addMinButton->setEnabled(true);
         ui->removeMinButton->setDisabled(true);
     }
-    if(dynamic_cast<Calculator*>(observer)->searchMean(table->getCell(currentRow,currentColumn))) {
+    if(formulaMean->searchCell(table->getCell(currentRow,currentColumn))) {
         ui->addMeanButton->setDisabled(true);
         ui->removeMeanButton->setEnabled(true);
     }
@@ -69,58 +72,58 @@ void MainWindow::on_tableWidget_cellChanged(int row, int column)
 
 void MainWindow::on_addSumButton_clicked()
 {
-    table->getCell(ui->tableWidget->currentRow(), ui->tableWidget->currentColumn())->attach("Sum");
+    table->getCell(ui->tableWidget->currentRow(), ui->tableWidget->currentColumn())->attach(formulaSum);
     updateTextEdit();
 }
 
 void MainWindow::on_removeSumButton_clicked()
 {
-    table->getCell(ui->tableWidget->currentRow(), ui->tableWidget->currentColumn())->detach("Sum");
+    table->getCell(ui->tableWidget->currentRow(), ui->tableWidget->currentColumn())->detach(formulaSum);
     updateTextEdit();
 }
-
-void MainWindow::updateTextEdit(){
-
-    ui->textEdit->setText("MAX:"+QString::number(dynamic_cast<Calculator*>(observer)->getMax())+"\n"
-        +"MIN:"+QString::number(dynamic_cast<Calculator*>(observer)->getMin())+"\n"
-        +"SUM:"+QString::number(dynamic_cast<Calculator*>(observer)->getSum())+"\n"
-        +"MEAN:"+QString::number(dynamic_cast<Calculator*>(observer)->getMean()));
-}
-
 
 
 void MainWindow::on_addMaxButton_clicked()
 {
-    table->getCell(ui->tableWidget->currentRow(), ui->tableWidget->currentColumn())->attach("Max");
+    table->getCell(ui->tableWidget->currentRow(), ui->tableWidget->currentColumn())->attach(formulaMax);
     updateTextEdit();
 }
 
 void MainWindow::on_removeMaxButton_clicked()
 {
-    table->getCell(ui->tableWidget->currentRow(), ui->tableWidget->currentColumn())->detach("Max");
+    table->getCell(ui->tableWidget->currentRow(), ui->tableWidget->currentColumn())->detach(formulaMax);
     updateTextEdit();
 }
 
 void MainWindow::on_addMinButton_clicked()
 {
-    table->getCell(ui->tableWidget->currentRow(), ui->tableWidget->currentColumn())->attach("Min");
+    table->getCell(ui->tableWidget->currentRow(), ui->tableWidget->currentColumn())->attach(formulaMin);
     updateTextEdit();
 }
 
 void MainWindow::on_removeMinButton_clicked()
 {
-    table->getCell(ui->tableWidget->currentRow(), ui->tableWidget->currentColumn())->detach("Min");
+    table->getCell(ui->tableWidget->currentRow(), ui->tableWidget->currentColumn())->detach(formulaMin);
     updateTextEdit();
 }
 
 void MainWindow::on_addMeanButton_clicked()
 {
-    table->getCell(ui->tableWidget->currentRow(), ui->tableWidget->currentColumn())->attach("Mean");
+    table->getCell(ui->tableWidget->currentRow(), ui->tableWidget->currentColumn())->attach(formulaMean);
     updateTextEdit();
 }
 
 void MainWindow::on_removeMeanButton_clicked()
 {
-    table->getCell(ui->tableWidget->currentRow(), ui->tableWidget->currentColumn())->detach("Mean");
+    table->getCell(ui->tableWidget->currentRow(), ui->tableWidget->currentColumn())->detach(formulaMean);
     updateTextEdit();
+}
+
+
+void MainWindow::updateTextEdit(){
+
+    ui->textEdit->setText("MAX:"+QString::number(dynamic_cast<FormulaMax*>(formulaMax)->getMax())+"\n"
+                          +"MIN:"+QString::number(dynamic_cast<FormulaMin*>(formulaMin)->getMin())+"\n"
+                          +"SUM:"+QString::number(dynamic_cast<FormulaSum*>(formulaSum)->getSum())+"\n"
+                          +"MEAN:"+QString::number(dynamic_cast<FormulaMean*>(formulaMean)->getMean()));
 }

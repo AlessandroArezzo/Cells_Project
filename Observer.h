@@ -5,7 +5,8 @@
 #ifndef CELLS_PROJECT_OBSERVER_H
 #define CELLS_PROJECT_OBSERVER_H
 
-#include "Subject.h"
+//#include "Subject.h"
+class Subject;
 
 class Observer{
 
@@ -14,9 +15,9 @@ public:
     Observer(){}
 
     virtual ~Observer(){}
-    virtual bool subscribe(Subject* cell,std::string formula)=0;
-    virtual bool unsubscribe(Subject* cell,std::string formula)=0;
-    virtual bool update()=0;
+    virtual void subscribe(Subject* cell)=0;
+    virtual void unsubscribe(Subject* cell)=0;
+    virtual void update()=0;
 
 
 };

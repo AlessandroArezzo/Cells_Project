@@ -10,11 +10,19 @@
 class FormulaMax: public Formula {
 public:
 
-    FormulaMax(std::list<Subject*>* cells) : Formula(cells) {}
+    FormulaMax() : Formula(),max(0) { }
 
     ~FormulaMax() {}
 
-    float calculate() ;
+    void calculate() override ;
+
+    float getMax() const {
+        return max;
+    }
+
+
+private:
+    float max;
 };
 
 

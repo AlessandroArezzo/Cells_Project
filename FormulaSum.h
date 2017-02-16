@@ -10,11 +10,18 @@
 class FormulaSum: public Formula {
 public:
 
-    FormulaSum(std::list<Subject*>* cells) : Formula(cells) {}
+    FormulaSum() : Formula(),sum(0) {}
 
     ~FormulaSum() {}
 
-    float calculate() ;
+    void calculate() override ;
+
+    float getSum() const {
+        return sum;
+    }
+
+private:
+    float sum;
 };
 
 #endif //CELLS_PROJECT_FORMULASUM_H

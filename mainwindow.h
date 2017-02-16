@@ -4,7 +4,11 @@
 #include <QMainWindow>
 #include "ui_mainwindow.h"
 #include "Table.h"
-#include "Observer.h"
+#include "Formula.h"
+#include "FormulaMax.h"
+#include "FormulaMin.h"
+#include "FormulaMean.h"
+#include "FormulaSum.h"
 
 namespace Ui {
 class MainWindow;
@@ -15,7 +19,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(Observer* ob=nullptr,QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
     void updateTextEdit();
@@ -42,9 +46,13 @@ private slots:
     void on_removeMeanButton_clicked();
 
 private:
-    Observer* observer;
     Ui::MainWindow *ui;
     Table* table;
+
+    Formula* formulaMax;
+    Formula* formulaMin;
+    Formula* formulaSum;
+    Formula* formulaMean;
 };
 
 

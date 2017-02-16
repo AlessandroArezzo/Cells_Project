@@ -19,11 +19,9 @@ set(SOURCE_FILES
     main.cpp
     mainwindow.cpp
     mainwindow.h
-    mainwindow.ui Cell.cpp Cell.h Subject.h Observer.h Calculator.cpp Calculator.h Table.cpp Table.h Formula.h FormulaMax.cpp FormulaMax.h FormulaMin.cpp FormulaMin.h FormulaSum.cpp FormulaSum.h FormulaMean.cpp FormulaMean.h)
+    mainwindow.ui Cell.cpp Cell.h Subject.h Observer.h Table.cpp Table.h Formula.h FormulaMax.cpp FormulaMax.h FormulaMin.cpp FormulaMin.h FormulaSum.cpp FormulaSum.h FormulaMean.cpp FormulaMean.h)
 
-add_executable(Cells_Project ${SOURCE_FILES})
-
-#qt5_use_modules( Cells_Project Core Widgets Gui)
+add_executable(Cells_Project ${SOURCE_FILES} Formula.cpp)
 
 include_directories(${Qt5Widgets_INCLUDE_DIRS})
 include_directories(${Qt5Core_INCLUDE_DIRS})
