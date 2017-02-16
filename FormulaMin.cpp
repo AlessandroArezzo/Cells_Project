@@ -4,7 +4,7 @@
 
 #include "FormulaMin.h"
 #include "Cell.h"
-void FormulaMin::calculate() {
+void FormulaMin::update() {
     min=0;
     if(cells.size()>0){
         min=dynamic_cast<Cell*>((*(cells.begin())))->getValue();

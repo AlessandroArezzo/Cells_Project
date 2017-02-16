@@ -14,7 +14,7 @@ public:
 
     ~FormulaMax() {}
 
-    void calculate() override ;
+    void update() override ;
 
     float getMax() const {
         return max;

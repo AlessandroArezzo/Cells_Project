@@ -15,9 +15,6 @@ void Formula::unsubscribe(Subject *cell) {
     update();
 }
 
-void Formula::update() {
-    calculate();
-}
 
 bool Formula::searchCell(Subject *cell) {
     auto itr= std::find(cells.begin(),cells.end(),cell);

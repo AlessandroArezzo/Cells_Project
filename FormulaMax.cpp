@@ -5,7 +5,7 @@
 #include "FormulaMax.h"
 #include "Cell.h"
 
-void FormulaMax::calculate() {
+void FormulaMax::update() {
     max=0;
     if(cells.size()>0){
         max = dynamic_cast<Cell *>(*(cells.begin()))->getValue();

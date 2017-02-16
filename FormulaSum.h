@@ -14,7 +14,7 @@ public:
 
     ~FormulaSum() {}
 
-    void calculate() override ;
+    void update() override ;
 
     float getSum() const {
         return sum;

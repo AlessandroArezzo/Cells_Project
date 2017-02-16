@@ -5,7 +5,7 @@
 #include "FormulaSum.h"
 #include "Cell.h"
 
-void FormulaSum::calculate() {
+void FormulaSum::update() {
     sum=0;
     if(cells.size()>0){
         for(auto itr=cells.begin();itr!=cells.end();itr++){

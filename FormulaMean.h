@@ -15,7 +15,7 @@ public:
 
     ~FormulaMean() {}
 
-    void calculate() override ;
+    void update() override ;
 
     float getMean() const {
         return mean;

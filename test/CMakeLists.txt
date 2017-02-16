@@ -8,12 +8,9 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 set (CMAKE_PREFIX_PATH "/Users/alessandroarezzo/Qt5.8.0/5.8/clang_64/lib/cmake")
 
-#find_package( Qt5Core REQUIRED )
-#find_package( Qt5Widgets REQUIRED )
-#find_package( Qt5Gui REQUIRED )
 find_package( Qt5Test REQUIRED)
 
-set(TEST_SOURCE_FILES runAllTests.cpp FormuleTest.h CalculatorTest.h CellTest.h)
+set(TEST_SOURCE_FILES runAllTests.cpp FormuleTest.h CellTest.h)
 
 add_executable(runAllTests ${TEST_SOURCE_FILES})
 

@@ -15,7 +15,7 @@ public:
 
     ~FormulaMin() {}
 
-    void calculate() override ;
+    void update() override ;
 
     float getMin() const {
         return min;

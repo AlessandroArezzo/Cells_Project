@@ -34,6 +34,12 @@ public:
         Cell::value = value;
         notify();
     }
+    
+    std::list<Observer*> getFormule(){
+        return formule;
+    }
+
+    bool searchFormula(Observer* formula);
 
 
 private:

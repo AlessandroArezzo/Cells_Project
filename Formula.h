@@ -16,13 +16,11 @@ public:
 
     virtual ~Formula(){}
 
-    virtual void update();
-    void subscribe(Subject* cell)  ;
-    void unsubscribe(Subject* cell)  ;
+    void subscribe(Subject* cell) override ;
+    void unsubscribe(Subject* cell)  override ;
 
     bool searchCell(Subject* cell);
 
-    virtual void calculate()=0;
 protected:
     std::list<Subject*> cells;
 };

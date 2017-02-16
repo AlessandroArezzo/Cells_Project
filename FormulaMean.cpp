@@ -5,7 +5,7 @@
 #include "FormulaMean.h"
 #include "Cell.h"
 
-void FormulaMean::calculate(){
+void FormulaMean::update(){
     mean=0;
     float sum=0;
     if(cells.size()>0){

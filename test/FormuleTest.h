@@ -6,70 +6,64 @@
 #define CELLS_PROJECT_FORMULAMAXTESTS_H
 
 
-//#include <QtTest>
 #include "gtest/gtest.h"
 #include "../Table.h"
-
+#include "../FormulaSum.h"
+#include "../FormulaMax.h"
+#include "../FormulaMean.h"
+#include "../FormulaMin.h"
 
 class FormuleTest: public testing::Test{
 
 
 protected:
-    virtual void SetUp(){
-        table=new Table(10,10,c);
-        table->setCellValue(10,0,0);
-        table->setCellValue(20,0,1);
-        table->setCellValue(30,0,2);
-        c=new Calculator();
-        c->subscribe(table->getCell(0,0),"Sum");
-        c->subscribe(table->getCell(0,0),"Min");
-        c->subscribe(table->getCell(0,1),"Mean");
-        c->subscribe(table->getCell(0,1),"Min");
-        c->subscribe(table->getCell(0,1),"Max");
-        c->subscribe(table->getCell(0,2),"Sum");
-        c->subscribe(table->getCell(0,2),"Min");
-        c->subscribe(table->getCell(0,2),"Mean");
 
+    virtual void SetUp(){
+        table=new Table(10,10);
+        formulaSum=new FormulaSum;
+        formulaMax=new FormulaMax;
+        formulaMin=new FormulaMin;
+        formulaMean=new FormulaMean;
+
+        table->setCellValue(10.5,0,0);
+        table->setCellValue(20.5,0,1);
+        table->setCellValue(30,0,2);
+        table->getCell(0,0)->attach(formulaSum);
+        table->getCell(0,0)->attach(formulaMin); // Cella in posizione 0,0 iscritta a Sum e Min
+        table->getCell(0,1)->attach(formulaMin);
+        table->getCell(0,1)->attach(formulaMax);
+        table->getCell(0,1)->attach(formulaMean);// Cella in posizione 0,1 iscritta a Min, Max e Mean
+        table->getCell(0,2)->attach(formulaSum);
+        table->getCell(0,2)->attach(formulaMin);
+        table->getCell(0,2)->attach(formulaMean); // Cella in posizione 0,2 iscritta a Sum, Min e Mean
 
     }
 
-    Calculator* c;
+    Formula* formulaSum;
+    Formula* formulaMax;
+    Formula* formulaMin;
+    Formula* formulaMean;
+
     Table* table;
 
 };
 
 TEST_F(FormuleTest, FormulaMax){
 
-    c->calculateMax();
-    ASSERT_EQ(c->getMax(),20);
+    ASSERT_EQ(dynamic_cast<FormulaMax*>(formulaMax)->getMax(),20.5);
 }
 
 TEST_F(FormuleTest,FormulaMin){
-    c->calculateMin();
-    ASSERT_EQ(c->getMin(),10);
+    ASSERT_EQ(dynamic_cast<FormulaMin*>(formulaMin)->getMin(),10.5);
 }
 
 TEST_F(FormuleTest,FormulaMean){
-    c->calculateMean();
-    ASSERT_EQ(c->getMean(),25);
+    ASSERT_EQ(dynamic_cast<FormulaMean*>(formulaMean)->getMean(),((20.5+30)/2));
 }
 
 TEST_F(FormuleTest,FormulaSum){
-    c->calculateSum();
-    ASSERT_EQ(c->getSum(),40);
+    ASSERT_EQ(dynamic_cast<FormulaSum*>(formulaSum)->getSum(),40.5);
 }
 
 
-/*class FormuleTest: public QObject{
-
-private slots:
-
-    void toUpper();
-
-protected:
-
-    Calculator* c;
-    Table* table;
-};
- */
 #endif //CELLS_PROJECT_FORMULAMAXTESTS_H

@@ -19,7 +19,7 @@ set(SOURCE_FILES
     main.cpp
     mainwindow.cpp
     mainwindow.h
-    mainwindow.ui Cell.cpp Cell.h Subject.h Observer.h Table.cpp Table.h Formula.h FormulaMax.cpp FormulaMax.h FormulaMin.cpp FormulaMin.h FormulaSum.cpp FormulaSum.h FormulaMean.cpp FormulaMean.h)
+    mainwindow.ui Cell.cpp Cell.h Subject.h Observer.h Table.cpp Table.h Formula.h Formula.cpp FormulaMax.cpp FormulaMax.h FormulaMin.cpp FormulaMin.h FormulaSum.cpp FormulaSum.h FormulaMean.cpp FormulaMean.h)
 
 add_executable(Cells_Project ${SOURCE_FILES} Formula.cpp)
 

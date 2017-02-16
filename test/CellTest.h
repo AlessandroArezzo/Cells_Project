@@ -8,46 +8,48 @@
 #include "gtest/gtest.h"
 
 #include "../Cell.h"
-#include "../Calculator.h"
+#include "../FormulaSum.h"
 
 class CellTest: public testing::Test{
 
 protected:
 
     virtual void SetUp(){
-        calculator=new Calculator;
+        cell=new Cell;
+        formulaSum=new FormulaSum;
     }
 
-    Calculator* calculator;
-
+    Cell* cell;
+    Formula* formulaSum;
 };
 
 
 TEST_F(CellTest,CellConstructor ){
 
-    Cell cell(calculator);
-    ASSERT_EQ(calculator, dynamic_cast<Calculator*>(cell.getObserver()));
+    ASSERT_EQ(0, cell->getValue());
 }
 
 
 TEST_F(CellTest,Attach){
-    Cell* cell=new Cell(calculator);
-    cell->attach("Sum");
-    ASSERT_TRUE(calculator->searchSum(cell));
-    ASSERT_FALSE(calculator->searchMean(cell));
-    ASSERT_FALSE(calculator->searchMax(cell));
-    ASSERT_FALSE(calculator->searchMin(cell));
-    ASSERT_TRUE(cell->isRegistred());
+    cell->attach(formulaSum);
+    ASSERT_TRUE(formulaSum->searchCell(cell));
+    ASSERT_TRUE(cell->searchFormula(formulaSum));
 }
-/*
+
+TEST_F(CellTest,Detach){
+    cell->attach(formulaSum);
+    cell->detach(formulaSum);
+    ASSERT_FALSE(formulaSum->searchCell(cell));
+}
+
+
 TEST_F(CellTest,Notify){
 
-    Cell* cell=new Cell(calculator);
-    cell->attach();
-    ASSERT_EQ(0, dynamic_cast<Cell*>(calculator->getCell(0))->getValue());
-    cell->setValue(10); //Il metodo set invoca Notify quindi si testa funzionamento del metodo Notify chiamando setValue
-    ASSERT_EQ(10, dynamic_cast<Cell*>(calculator->getCell(0))->getValue());
+    cell->attach(formulaSum);
+    ASSERT_EQ(0, dynamic_cast<FormulaSum*>(formulaSum)->getSum());
+    cell->setValue(10); //Il metodo setValue invoca Notify quindi si testa funzionamento del metodo Notify chiamando setValue
+    ASSERT_EQ(10, dynamic_cast<FormulaSum*>(formulaSum)->getSum());
 }
-*/
+
 
 #endif //CELLS_PROJECT_CELLTEST_H
